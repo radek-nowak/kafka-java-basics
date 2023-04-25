@@ -20,15 +20,13 @@ public class ProducerDemo {
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
-        ProducerRecord<String, String> record = new ProducerRecord<>("demo", "hello2");
+        ProducerRecord<String, String> record = new ProducerRecord<>("demo", "hello");
 
-        // send data - asynchronous
-        producer.send(record);
-
-        // flush data - synchronous
-        producer.flush();
-
-        // flush and close producer
-        producer.close();
+        try {
+            // send data - asynchronous
+            producer.send(record);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
